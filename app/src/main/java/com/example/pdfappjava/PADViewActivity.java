@@ -1,5 +1,6 @@
 package com.example.pdfappjava;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ public class PADViewActivity extends AppCompatActivity {
 
     ActivityPadviewBinding binding;
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,8 @@ public class PADViewActivity extends AppCompatActivity {
 
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Fetching... "+fileName);
+
+        binding.pdfWebView.getSettings().setJavaScriptEnabled(true);
 
         binding.pdfWebView.setWebViewClient(new WebViewClient(){
 
