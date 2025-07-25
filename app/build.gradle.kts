@@ -48,4 +48,7 @@ dependencies {
 
     //Dexter permission library
     implementation(libs.dexter)
+
+    // FirebaseUI for Firebase Realtime Database
+    implementation("com.firebaseui:firebase-ui-database:7.1.1")
 }

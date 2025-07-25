@@ -9,12 +9,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.pdfappjava.databinding.ActivityMainBinding;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
+    MainAdapeter mainAdapeter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,5 +38,27 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, UploadPDFActivity.class));
             }
         });
+
+        FirebaseRecyclerOptions<FileInfo> options = new FirebaseRecyclerOptions.Builder<FileInfo>()
+                .setQuery(FirebaseDatabase.getInstance().getReference().child("MyPDF"), FileInfo.class)
+                .build();
+
+        binding.mainRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mainAdapeter = new MainAdapeter(options);
+        binding.mainRecyclerView.setAdapter(mainAdapeter);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mainAdapeter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mainAdapeter.stopListening();
     }
 }

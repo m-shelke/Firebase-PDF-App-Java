@@ -115,7 +115,7 @@ public class UploadPDFActivity extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Uri uri) {
 
-                                        FileInfo fileInfo = new FileInfo(binding.fileNameEt.getText().toString(),uri.toString());
+                                        FileInfo fileInfo = new FileInfo(uri.toString(),binding.fileNameEt.getText().toString(),0,0,0);
                                         databaseReference.child("MyPDF").push().setValue(fileInfo);
 
                                         binding.logoImg.setVisibility(View.INVISIBLE);
