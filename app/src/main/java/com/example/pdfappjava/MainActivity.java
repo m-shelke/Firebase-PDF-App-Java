@@ -32,6 +32,14 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+
+        binding.addMultipleFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, UploadMultiplePDFActivity.class));
+            }
+        });
+
         binding.addFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

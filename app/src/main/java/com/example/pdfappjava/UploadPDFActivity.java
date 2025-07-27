@@ -104,6 +104,13 @@ public class UploadPDFActivity extends AppCompatActivity {
         progressDialog.setMessage("File Uploading..");
         progressDialog.show();
 
+       String randomValue = String.valueOf(databaseReference.push());
+
+       //Successfully, We get Random value
+        Log.e("randomValue",randomValue);
+
+        Toast.makeText(this, randomValue, Toast.LENGTH_SHORT).show();
+
         StorageReference reference = storageReference.child("MyPDF").child(System.currentTimeMillis()+".pdf");
         reference.putFile(filePath)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
